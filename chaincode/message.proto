@@ -1,0 +1,19 @@
+
+
+
+
+syntax = "proto3";
+
+package chaincode;
+option go_package = "./";
+
+// The request message containing the user's name
+message GreetingRequest {
+  string name = 1;
+}
+
+// The response message containing the greeting
+message GreetingResponse {
+  string message = 1;
+}
+

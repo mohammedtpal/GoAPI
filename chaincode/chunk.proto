@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package chaincode;
+option go_package = "./";
+
+message Chunk {
+  bytes data = 1;
+}

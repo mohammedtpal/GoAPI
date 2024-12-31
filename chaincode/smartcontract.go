@@ -31,30 +31,21 @@ func (s *SmartContract) InitLedger(ctx contractapi.TransactionContextInterface) 
 // InvokeGreeting simulates an HTTP handler that receives a Protobuf message, processes it, and returns a response
 func (s *SmartContract) InvokeGreeting(ctx contractapi.TransactionContextInterface, data []byte) ([]byte, error) {
 	// Unmarshal the incoming Protobuf data into the GreetingRequest message
-	var req GreetingRequest
+	var req Chunk
 	if err := proto.Unmarshal(data, &req); err != nil {
 		return nil, fmt.Errorf("failed to unmarshal Protobuf data: %v", err)
 	}
 
-	// Simulate chaincode logic to handle the greeting
-	message, err := s.HandleGreeting(ctx, req.Name)
+	// Marshal the data back to Protobuf format (without changing it)
+	marshalledData, err := proto.Marshal(&req)
 	if err != nil {
-		return nil, fmt.Errorf("failed to handle greeting: %v", err)
+		return nil, fmt.Errorf("failed to marshal Protobuf data: %v", err)
 	}
 
-	// Create a response message
-	resp := &GreetingResponse{
-		Message: message,
-	}
-
-	// Marshal the response to Protobuf and return it
-	respData, err := proto.Marshal(resp)
-	if err != nil {
-		return nil, fmt.Errorf("failed to marshal Protobuf response: %v", err)
-	}
-
-	return respData, nil
+	// Return the marshalled data
+	return marshalledData, nil
 }
+
 
 func main() {
 	// Create a new SmartContract instance and start it

@@ -2,7 +2,7 @@ First you have to prepare your .proto file.and make sure that your header contai
 syntax = "proto3";package chaincode;option go_package = "./";
 
 Put your proto file in the same directory as the smart contract. Then run the following command:
-protoc --go_out=. --go_opt=paths=source_relative   --go-grpc_out=. --go-grpc_opt=paths=source_relative   message.proto
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./chunk.proto
 
 where message is the name of your proto file 
 This command will create a new file named message.pb.go. open this file and make sure to change:
@@ -13,7 +13,7 @@ Then now you can deploy the smart contract now using your data and path:
  
  
 
-./network.sh deployCC -ccn protoTestContract1 -ccp ../asset-transfer-basic/chaincode-go-protoTestContract1/ -ccl go
+./network.sh deployCC -ccn protoChunkContract -ccp ../asset-transfer-basic/chaincode-go-protoTestContract1-Chunk/ -ccl go
 
 
 

@@ -4,7 +4,7 @@
 // 	protoc        v3.12.4
 // source: message.proto
 
-package __
+package chaincode
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"

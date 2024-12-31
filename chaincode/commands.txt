@@ -1,28 +1,19 @@
-first you have to prepare your .proto file
-and make sure that your header contains the following:
+First you have to prepare your .proto file.and make sure that your header contains the following:
+syntax = "proto3";package chaincode;option go_package = "./";
 
-syntax = "proto3";
-package chaincode;
-option go_package = "./";
+Put your proto file in the same directory as the smart contract. Then run the following command:
+protoc --go_out=. --go_opt=paths=source_relative   --go-grpc_out=. --go-grpc_opt=paths=source_relative   message.proto
 
+where message is the name of your proto file 
+This command will create a new file named message.pb.go. open this file and make sure to change:
+package __    to be: package chaincode
 
-put your proto file on the same dir of the smart contract 
-then run the following command:
+Then save the file, and now the proto file is fully connected with your chaincode without any further import commands.
+Then now you can deploy the smart contract now using your data and path:
+ 
+ 
 
-protoc --go_out=. --go_opt=paths=source_relative   --go-grpc_out=. --go-grpc_opt=paths=source_relative   message.proto
-
-where message is the name of your proto file 
-
-this command will create new file named: message.pb.go 
-open this file and make sure to change:
-package __    to be: package chaincode
-
-then save the file and now the proto file is fully connected with your chaincode without any further import commands
-
-
-then now you can deploy the smart contract:
-
-./network.sh deployCC -ccn protoTestContract1 -ccp ../asset-transfer-basic/chaincode-go3/ -ccl go
+./network.sh deployCC -ccn protoTestContract1 -ccp ../asset-transfer-basic/chaincode-go-protoTestContract1/ -ccl go
 
 
 

@@ -8,7 +8,7 @@ import (
 	"log"
 
 	"github.com/hyperledger/fabric-contract-api-go/v2/contractapi"
-	"github.com/hyperledger/fabric-samples/asset-transfer-basic/chaincode-go3/chaincode"
+	"github.com/hyperledger/fabric-samples/asset-transfer-basic/chaincode-go-protoTestContract1-Chunk2/chaincode"
 )
 
 func main() {

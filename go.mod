@@ -1,4 +1,4 @@
-module github.com/hyperledger/fabric-samples/asset-transfer-basic/chaincode-go3
+module github.com/hyperledger/fabric-samples/asset-transfer-basic/chaincode-go-protoTestContract1-Chunk2
 
 go 1.20
 

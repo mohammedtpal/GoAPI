@@ -13,7 +13,7 @@ Then now you can deploy the smart contract now using your data and path:
  
  
 
-./network.sh deployCC -ccn protoChunkContract -ccp ../asset-transfer-basic/chaincode-go-protoTestContract1-Chunk/ -ccl go
+./network.sh deployCC -ccn protoMainChunkContract -ccp ../asset-transfer-basic/chaincode-go-protoTestContract1-Chunk2/ -ccl go
 
 
 

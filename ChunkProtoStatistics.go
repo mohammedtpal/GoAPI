@@ -12,7 +12,7 @@ import (
 
 // Helper function to convert bytes to KB
 func bytesToKB(sizeInBytes int) float64 {
-	return float64(sizeInBytes) / 1024
+	return float64(sizeInBytes) / 1024.0
 }
 
 func greetHandler(w http.ResponseWriter, r *http.Request) {
@@ -23,6 +23,7 @@ func greetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	fmt.Printf("Received raw data size: %.2f KB\n", bytesToKB(len(reqData)))
 	// Unmarshal the data into the Chunk message
 	var req protoF.Chunk
 	if err := proto.Unmarshal(reqData, &req); err != nil {
@@ -35,7 +36,12 @@ func greetHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Calculate and print the unmarshaled size
 	unmarshaledSize := bytesToKB(len(reqData))
-	fmt.Printf("Unmarshaled size: %.2f KB\n", unmarshaledSize)
+	fmt.Printf("Unmarshaled size: %.52 KB\n", unmarshaledSize)
+
+
+	// Print the unmarshaled data for inspection (optional)
+	// fmt.Printf("Unmarshaled Chunk: %+v\n", req)
+fmt.Print(len(req.Data) )
 
 	// Marshal the data again
 	marshaledData, err := proto.Marshal(&req)
@@ -47,7 +53,7 @@ func greetHandler(w http.ResponseWriter, r *http.Request) {
     // log.Println("Marshaled data:", marshaledData)
 	// Calculate and print the marshaled size
 	marshaledSize := bytesToKB(len(marshaledData))
-	fmt.Printf("Marshaled size: %.2f KB\n", marshaledSize)
+	fmt.Printf("\nMarshaled size: %.2f KB\n", marshaledSize)
 	fmt.Printf("________________________________________________________\n")
 
 	// Send the marshaled data back as a response

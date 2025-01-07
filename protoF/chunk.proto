@@ -1,0 +1,14 @@
+
+
+
+
+syntax = "proto3";
+
+package protoF;
+
+option go_package = "./";
+
+message Chunk {
+  bytes data = 1;
+}
+
